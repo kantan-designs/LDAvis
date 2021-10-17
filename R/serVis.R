@@ -44,7 +44,7 @@ serVis <- function(json, out.dir = tempfile(), open.browser = interactive(),
   dir.create(out.dir)
   src.dir <- system.file("htmljs", package = "LDAvis")
   to.copy <- Sys.glob(file.path(src.dir, "*"))
-  file.copy(to.copy, out.dir, overwrite = TRUE, recursive = TRUE)
+  file.copy(to.copy, out.dir, overwrite = FALSE, recursive = TRUE)
   
   ## Substitute words to different language if required
   if (language != 'english') {
