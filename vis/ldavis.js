@@ -318,58 +318,58 @@ LDAvis = function(to_select, json_file) {
 	
         // circle guide inspired from
         // http://www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html?_r=0
-        circleGuide = function(rSize, size) {
-            d3.select("#leftpanel").append("circle")
-                .attr('class', "circleGuide" + size)
-                .attr('r', rSize)
-                .attr('cx', cx)
-                .attr('cy', mdsheight + rSize)
-                .style('fill', 'none')
-                .style('stroke-dasharray', '2 2')
-                .style('stroke', '#999');
-            d3.select("#leftpanel").append("line")
-                .attr('class', "lineGuide" + size)
-                .attr("x1", cx)
-                .attr("x2", cx2)
-                .attr("y1", mdsheight + 2 * rSize)
-                .attr("y2", mdsheight + 2 * rSize)
-                .style("stroke", "gray")
-                .style("opacity", 0.3);
-        }
+      //  circleGuide = function(rSize, size) {
+        //    d3.select("#leftpanel").append("circle")
+         //        .attr('class', "circleGuide" + size)
+        //         .attr('r', rSize)
+           //      .attr('cx', cx)
+          //       .attr('cy', mdsheight + rSize)
+          //       .style('fill', 'none')
+          //       .style('stroke-dasharray', '2 2')
+          //       .style('stroke', '#999');
+         //    d3.select("#leftpanel").append("line")
+        //         .attr('class', "lineGuide" + size)
+         //        .attr("x1", cx)
+             //    .attr("x2", cx2)
+           //      .attr("y1", mdsheight + 2 * rSize)
+          //       .attr("y2", mdsheight + 2 * rSize)
+           //      .style("stroke", "gray")
+             //    .style("opacity", 0.3);
+       //  }
 
-        circleGuide(newSmall, "Small");
-        circleGuide(newMedium, "Medium");
-        circleGuide(newLarge, "Large");
+       //  circleGuide(newSmall, "Small");
+       //  circleGuide(newMedium, "Medium");
+       //  circleGuide(newLarge, "Large");
 
-        var defaultLabelSmall = "2%";
-        var defaultLabelMedium = "5%";
-        var defaultLabelLarge = "10%";
+      //   var defaultLabelSmall = "2%";
+      //   var defaultLabelMedium = "5%";
+      //   var defaultLabelLarge = "10%";
 
-        d3.select("#leftpanel").append("text")
-            .attr("x", 10)
-            .attr("y", mdsheight - 10)
-            .attr('class', "circleGuideTitle")
-            .style("text-anchor", "left")
-            .style("fontWeight", "bold")
-            .text("Marginal topic distribution");
-        d3.select("#leftpanel").append("text")
-            .attr("x", cx2 + 10)
-            .attr("y", mdsheight + 2 * newSmall)
-            .attr('class', "circleGuideLabelSmall")
-            .style("text-anchor", "start")
-            .text(defaultLabelSmall);
-        d3.select("#leftpanel").append("text")
-            .attr("x", cx2 + 10)
-            .attr("y", mdsheight + 2 * newMedium)
-            .attr('class', "circleGuideLabelMedium")
-            .style("text-anchor", "start")
-            .text(defaultLabelMedium);
-        d3.select("#leftpanel").append("text")
-            .attr("x", cx2 + 10)
-            .attr("y", mdsheight + 2 * newLarge)
-            .attr('class', "circleGuideLabelLarge")
-            .style("text-anchor", "start")
-            .text(defaultLabelLarge);
+   //      d3.select("#leftpanel").append("text")
+   //          .attr("x", 10)
+   //          .attr("y", mdsheight - 10)
+   //          .attr('class', "circleGuideTitle")
+   //          .style("text-anchor", "left")
+   //          .style("fontWeight", "bold")
+   //          .text("Marginal topic distribution");
+   //      d3.select("#leftpanel").append("text")
+   //          .attr("x", cx2 + 10)
+   //          .attr("y", mdsheight + 2 * newSmall)
+   //          .attr('class', "circleGuideLabelSmall")
+   //          .style("text-anchor", "start")
+   //          .text(defaultLabelSmall);
+   //      d3.select("#leftpanel").append("text")
+   //          .attr("x", cx2 + 10)
+      //       .attr("y", mdsheight + 2 * newMedium)
+    //         .attr('class', "circleGuideLabelMedium")
+     //        .style("text-anchor", "start")
+     //        .text(defaultLabelMedium);
+  //       d3.select("#leftpanel").append("text")
+  //          .attr("x", cx2 + 10)
+   //          .attr("y", mdsheight + 2 * newLarge)
+   //          .attr('class', "circleGuideLabelLarge")
+    //         .style("text-anchor", "start")
+   //          .text(defaultLabelLarge);
 
         // bind mdsData to the points in the left panel:
         var points = mdsplot.selectAll("points")
@@ -471,7 +471,7 @@ LDAvis = function(to_select, json_file) {
             .attr("id", "bar-freqs");
 
         // bar chart legend/guide:
-        var barguide = {"width": 100, "height": 15};
+        /*var barguide = {"width": 100, "height": 15};
         d3.select("#bar-freqs").append("rect")
             .attr("x", 0)
             .attr("y", mdsheight + 10)
@@ -517,7 +517,7 @@ LDAvis = function(to_select, json_file) {
             .attr("y", mdsheight + 10 + (8/2)*barguide.height + 5)
             .style("dominant-baseline", "middle")
             .text("2. relevance(term w | topic t) = \u03BB * p(w | t) + (1 - \u03BB) * p(w | t)/p(w); see Sievert & Shirley (2014)");
-
+*/
         // Bind 'default' data to 'default' bar chart
         var basebars = chart.selectAll(".bar-totals")
             .data(barDefault2)
@@ -1045,7 +1045,7 @@ LDAvis = function(to_select, json_file) {
 		.attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
 		.style("text-anchor", "middle")
 		.style("font-size", "16px")
-		.text("Most Prominent / Distinctive Terms In Topic " + topics + " (" + Freq + "% of tokens)");
+		.text("Most Prominent / Distinctive Terms In Topic " + topics);
 	    
             // grab the bar-chart data for this topic only:
             var dat2 = lamData.filter(function(d) {
