@@ -1045,7 +1045,7 @@ LDAvis = function(to_select, json_file) {
 		.attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
 		.style("text-anchor", "middle")
 		.style("font-size", "16px")
-		.text("Most Prominent / Distinctive Terms In Topic " + topics);
+		.text("Most Prominent / Distinctive Terms In Theme " + topics);
 	    
             // grab the bar-chart data for this topic only:
             var dat2 = lamData.filter(function(d) {
