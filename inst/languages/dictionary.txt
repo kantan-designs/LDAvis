@@ -1,5 +1,5 @@
 base, polish
-"Marginal topic distribution", "Rozkład brzegowy tematów"
+"HELLO I AM CHANGING THIS!", "Rozkład brzegowy tematów"
 "Intertopic Distance Map (via multidimensional scaling)", "Mapa odległości między tematami (na bazie skalowania wielowymiarowego)"
 "Overall term frequency", "Całkowita częstość terminu"
 "Estimated term frequency within the selected topic", "Przewidywana częstość terminu w wybranym temacie"
