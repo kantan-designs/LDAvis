@@ -147,7 +147,8 @@ LDAvis = function(to_select, json_file) {
         // Create the topic input & lambda slider forms. Inspired from:
         // http://bl.ocks.org/d3noob/10632804
         // http://bl.ocks.org/d3noob/10633704
-        init_forms(topicID, lambdaID, visID);
+        
+        // init_forms(topicID, lambdaID, visID);
 
         // When the value of lambda changes, update the visualization
         d3.select(lambda_select)
@@ -440,10 +441,10 @@ LDAvis = function(to_select, json_file) {
             });
 
         svg.append("text")
-            .text("Intertopic Distance Map (via multidimensional scaling)")
+            .text("Themes Identified By The Model")
             .attr("x", mdswidth/2 + margin.left)
             .attr("y", 30)
-	    .style("font-size", "16px")
+	    .style("font-size", "20px")
 	    .style("text-anchor", "middle");
 
         // establish layout and vars for bar chart
@@ -499,24 +500,24 @@ LDAvis = function(to_select, json_file) {
             .text("Estimated term frequency within the selected topic");
 
 	// footnotes:
-        d3.select("#bar-freqs")
-            .append("a")
-            .attr("xlink:href", "http://vis.stanford.edu/files/2012-Termite-AVI.pdf")
-            .attr("target", "_blank")
-            .append("text")
-            .attr("x", 0)
-            .attr("y", mdsheight + 10 + (6/2)*barguide.height + 5)
-            .style("dominant-baseline", "middle")
-            .text("1. saliency(term w) = frequency(w) * [sum_t p(t | w) * log(p(t | w)/p(t))] for topics t; see Chuang et. al (2012)");
-        d3.select("#bar-freqs")
-            .append("a")
-            .attr("xlink:href", "http://nlp.stanford.edu/events/illvi2014/papers/sievert-illvi2014.pdf")
-            .attr("target", "_blank")
-            .append("text")
-            .attr("x", 0)
-            .attr("y", mdsheight + 10 + (8/2)*barguide.height + 5)
-            .style("dominant-baseline", "middle")
-            .text("2. relevance(term w | topic t) = \u03BB * p(w | t) + (1 - \u03BB) * p(w | t)/p(w); see Sievert & Shirley (2014)");
+        // d3.select("#bar-freqs")
+        //     .append("a")
+        //     .attr("xlink:href", "http://vis.stanford.edu/files/2012-Termite-AVI.pdf")
+        //     .attr("target", "_blank")
+        //     .append("text")
+        //     .attr("x", 0)
+        //     .attr("y", mdsheight + 10 + (6/2)*barguide.height + 5)
+        //     .style("dominant-baseline", "middle")
+        //     .text("1. saliency(term w) = frequency(w) * [sum_t p(t | w) * log(p(t | w)/p(t))] for topics t; see Chuang et. al (2012)");
+        // d3.select("#bar-freqs")
+        //     .append("a")
+        //     .attr("xlink:href", "http://nlp.stanford.edu/events/illvi2014/papers/sievert-illvi2014.pdf")
+        //     .attr("target", "_blank")
+        //     .append("text")
+        //     .attr("x", 0)
+        //     .attr("y", mdsheight + 10 + (8/2)*barguide.height + 5)
+        //     .style("dominant-baseline", "middle")
+        //     .text("2. relevance(term w | topic t) = \u03BB * p(w | t) + (1 - \u03BB) * p(w | t)/p(w); see Sievert & Shirley (2014)");
 
         // Bind 'default' data to 'default' bar chart
         var basebars = chart.selectAll(".bar-totals")
