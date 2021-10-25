@@ -317,61 +317,8 @@ LDAvis = function(to_select, json_file) {
     	var cx = 10 + newLarge,
         cx2 = cx + 1.5 * newLarge;
 	
-        // circle guide inspired from
-        // http://www.nytimes.com/interactive/2012/02/13/us/politics/2013-budget-proposal-graphic.html?_r=0
-        circleGuide = function(rSize, size) {
-            d3.select("#leftpanel").append("circle")
-                .attr('class', "circleGuide" + size)
-                .attr('r', rSize)
-                .attr('cx', cx)
-                .attr('cy', mdsheight + rSize)
-                .style('fill', 'none')
-                .style('stroke-dasharray', '2 2')
-                .style('stroke', '#999');
-            d3.select("#leftpanel").append("line")
-                .attr('class', "lineGuide" + size)
-                .attr("x1", cx)
-                .attr("x2", cx2)
-                .attr("y1", mdsheight + 2 * rSize)
-                .attr("y2", mdsheight + 2 * rSize)
-                .style("stroke", "gray")
-                .style("opacity", 0.3);
-        }
-
-        circleGuide(newSmall, "Small");
-        circleGuide(newMedium, "Medium");
-        circleGuide(newLarge, "Large");
-
-        var defaultLabelSmall = "2%";
-        var defaultLabelMedium = "5%";
-        var defaultLabelLarge = "10%";
-
-        d3.select("#leftpanel").append("text")
-            .attr("x", 10)
-            .attr("y", mdsheight - 10)
-            .attr('class', "circleGuideTitle")
-            .style("text-anchor", "left")
-            .style("fontWeight", "bold")
-            .text("Marginal topic distribution");
-        d3.select("#leftpanel").append("text")
-            .attr("x", cx2 + 10)
-            .attr("y", mdsheight + 2 * newSmall)
-            .attr('class', "circleGuideLabelSmall")
-            .style("text-anchor", "start")
-            .text(defaultLabelSmall);
-        d3.select("#leftpanel").append("text")
-            .attr("x", cx2 + 10)
-            .attr("y", mdsheight + 2 * newMedium)
-            .attr('class', "circleGuideLabelMedium")
-            .style("text-anchor", "start")
-            .text(defaultLabelMedium);
-        d3.select("#leftpanel").append("text")
-            .attr("x", cx2 + 10)
-            .attr("y", mdsheight + 2 * newLarge)
-            .attr('class', "circleGuideLabelLarge")
-            .style("text-anchor", "start")
-            .text(defaultLabelLarge);
-
+       
+        
         // bind mdsData to the points in the left panel:
         var points = mdsplot.selectAll("points")
             .data(mdsData)
@@ -441,7 +388,7 @@ LDAvis = function(to_select, json_file) {
             });
 
         svg.append("text")
-            .text("Themes Identified By The Model")
+            .text("Potential Themes (Hover Over Bubbles To See Key Terms)")
             .attr("x", mdswidth/2 + margin.left)
             .attr("y", 30)
 	    .style("font-size", "20px")
@@ -582,13 +529,13 @@ LDAvis = function(to_select, json_file) {
             .attr("y", -30)
             .attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
             .style("text-anchor", "middle")
-            .style("font-size", "16px")
-            .text("Top-" + R + " Most Salient Terms");
+            .style("font-size", "20px")
+            .text("Most Distinctive & Frequent Terms The Entire Sample");
 	
-        title.append("tspan")
-	    .attr("baseline-shift", "super")	    
-	    .attr("font-size", "12px")
-	    .text("(1)");
+//        title.append("tspan")
+//	    .attr("baseline-shift", "super")	    
+//	    .attr("font-size", "12px")
+//	    .text("(1)");
 	
         // barchart axis adapted from http://bl.ocks.org/mbostock/1166403
         var xAxis = d3.svg.axis().scale(x)
@@ -1045,8 +992,8 @@ LDAvis = function(to_select, json_file) {
 		.attr("y", -30)
 		.attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
 		.style("text-anchor", "middle")
-		.style("font-size", "16px")
-		.text("Top-" + R + " Most Relevant Terms for Topic " + topics + " (" + Freq + "% of tokens)");
+		.style("font-size", "20px")
+		.text("Most Distinctive & Frequent Terms in Theme " + topics);
 	    
             // grab the bar-chart data for this topic only:
             var dat2 = lamData.filter(function(d) {
@@ -1148,11 +1095,12 @@ LDAvis = function(to_select, json_file) {
             circle.style.fill = color1;
 
             var title = d3.selectAll(".bubble-tool")
-		.text("Top-" + R + " Most Salient Terms");
-	    title.append("tspan")
-	     	.attr("baseline-shift", "super")	    
-	     	.attr("font-size", 12)
-	     	.text(1);
+		.text("Most Distinctive & Frequent Terms In The Entire Sample")
+		  .attr("font-size", 20);
+//	    title.append("tspan")
+//	     	.attr("baseline-shift", "super")	    
+//	     	.attr("font-size", 12)
+//	     	.text(1);
 
             // remove the red bars
             d3.selectAll(".overlay").remove();

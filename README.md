@@ -1,3 +1,10 @@
+## TO DO LIST
+
+1. Fix width of vis display
+
+
+
+
 ## LDAvis
 
 [![Build Status](https://travis-ci.org/cpsievert/LDAvis.png?branch=master)](https://travis-ci.org/cpsievert/LDAvis)
