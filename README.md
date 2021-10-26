@@ -1,10 +1,15 @@
 ## TO DO LIST
 
-1. Fix sort issue with default bar chart display. Get familiar with D3: https://towardsdatascience.com/d3-and-r-a-match-made-in-heaven-ff0bf82efe9a
+1. Get familiar with D3: https://towardsdatascience.com/d3-and-r-a-match-made-in-heaven-ff0bf82efe9a - DONE
+2. Fix width of vis display - DONE
 
-2. Fix width of vis display
 
-3. Display top 10 verbatims per topic
+
+3. Fix sort issue with default bar chart display.
+
+4. Display top 10 verbatims per topic below
+
+5. Create report boilerplate for each question
 
 
 

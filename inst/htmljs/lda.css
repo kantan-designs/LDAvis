@@ -21,3 +21,8 @@ text {
     font-family: sans-serif;
     font-size: 11px;
 }
+
+.svg-style {
+        display: block;
+        margin: auto;
+           }

@@ -40,19 +40,19 @@ LDAvis = function(to_select, json_file) {
     // Set global margins used for everything
     var margin = {
         top: 30,
-        right: 30,
+        right: 60,
         bottom: 70,
-        left: 30
+        left: 60
     },
     mdswidth = 530,
     mdsheight = 530,
     barwidth = 530,
     barheight = 530,
-    termwidth = 90, // width to add between two panels to display terms
+    termwidth = 290, // width to add between two panels to display terms
     mdsarea = mdsheight * mdswidth;
     // controls how big the maximum circle can be
     // doesn't depend on data, only on mds width and height:
-    var rMax = 60;  
+    var rMax = 40;  
 
     // proportion of area of MDS plot to which the sum of default topic circle areas is set
     var circle_prop = 0.25;
@@ -260,15 +260,17 @@ LDAvis = function(to_select, json_file) {
 	}
 
         // Create new svg element (that will contain everything):
-        var svg = d3.select(to_select).append("svg")
+        var svg = d3.select(to_select)
+            .append("svg")
             .attr("width", mdswidth + barwidth + margin.left + termwidth + margin.right)
-            .attr("height", mdsheight + 2 * margin.top + margin.bottom + 2 * rMax);
+            .attr("height", mdsheight + 2 * margin.top + margin.bottom + 2 * rMax)
+            .attr("class", "svg-style");
 
         // Create a group for the mds plot
         var mdsplot = svg.append("g")
             .attr("id", "leftpanel")
             .attr("class", "points")
-            .attr("transform", "translate(" + margin.left + "," + 2 * margin.top + ")");
+            .attr("transform", "translate(" + margin.left + "," + 4 * margin.top + ")");
 
         // Clicking on the mdsplot should clear the selection
         mdsplot
@@ -415,7 +417,7 @@ LDAvis = function(to_select, json_file) {
 
         // Add a group for the bar chart
         var chart = svg.append("g")
-            .attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 2 * margin.top + ")")
+            .attr("transform", "translate(" + +(mdswidth + margin.left + termwidth) + "," + 4 * margin.top + ")")
             .attr("id", "bar-freqs");
 
         // bar chart legend/guide:
@@ -526,7 +528,7 @@ LDAvis = function(to_select, json_file) {
 
         var title = chart.append("text")
             .attr("x", barwidth/2)
-            .attr("y", -30)
+            .attr("y", -90)
             .attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
             .style("text-anchor", "middle")
             .style("font-size", "20px")
@@ -989,7 +991,7 @@ LDAvis = function(to_select, json_file) {
             d3.select("#bar-freqs")
 		.append("text")
 		.attr("x", barwidth/2)
-		.attr("y", -30)
+		.attr("y", -90)
 		.attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
 		.style("text-anchor", "middle")
 		.style("font-size", "20px")
