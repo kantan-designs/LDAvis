@@ -148,7 +148,7 @@ LDAvis = function(to_select, json_file) {
         // http://bl.ocks.org/d3noob/10632804
         // http://bl.ocks.org/d3noob/10633704
         
-        // init_forms(topicID, lambdaID, visID);
+        init_forms(topicID, lambdaID, visID);
 
         // When the value of lambda changes, update the visualization
         d3.select(lambda_select)
@@ -379,7 +379,7 @@ LDAvis = function(to_select, json_file) {
                     topic_off(document.getElementById(old_topic));
                 }
                 // make sure topic input box value and fragment reflects clicked selection
-                document.getElementById(topicID).value = vis_state.topic = d.topics;
+               // document.getElementById(topicID).value = vis_state.topic = d.topics;
                 state_save(true);
                 topic_on(this);
                 topic_click(this, d.topics);
@@ -394,6 +394,7 @@ LDAvis = function(to_select, json_file) {
             .attr("x", mdswidth/2 + margin.left)
             .attr("y", 30)
 	    .style("font-size", "20px")
+	    .style("font-weight", "bold")
 	    .style("text-anchor", "middle");
 
         // establish layout and vars for bar chart
@@ -532,6 +533,7 @@ LDAvis = function(to_select, json_file) {
             .attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
             .style("text-anchor", "middle")
             .style("font-size", "20px")
+            .style("font-weight", "bold")
             .text("Most Distinctive & Frequent Terms The Entire Sample");
 	
 //        title.append("tspan")
@@ -599,88 +601,88 @@ LDAvis = function(to_select, json_file) {
 
             // lambda inputs
     	    //var lambdaDivLeft = 8 + mdswidth + margin.left + termwidth;
-    	    var lambdaDivWidth = barwidth;
-    	    var lambdaDiv = document.createElement("div");
-    	    lambdaDiv.setAttribute("id", "lambdaInput");
-    	    lambdaDiv.setAttribute("style", "padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
-    	    inputDiv.appendChild(lambdaDiv);
+  //   	    var lambdaDivWidth = barwidth;
+  //   	    var lambdaDiv = document.createElement("div");
+  //   	    lambdaDiv.setAttribute("id", "lambdaInput");
+  //   	    lambdaDiv.setAttribute("style", "padding: 5px; background-color: #e8e8e8; display: inline-block; height: 50px; width: " + lambdaDivWidth + "px; float: right; margin-right: 30px");
+  //   	    inputDiv.appendChild(lambdaDiv);
 
-    	    var lambdaZero = document.createElement("div");
-    	    lambdaZero.setAttribute("style", "padding: 5px; height: 20px; width: 220px; font-family: sans-serif; float: left");
-	    lambdaZero.setAttribute("id", "lambdaZero");
-    	    lambdaDiv.appendChild(lambdaZero);
-	    var xx = d3.select("#lambdaZero")
-		.append("text")
-		.attr("x", 0)
-		.attr("y", 0)
-		.style("font-size", "14px")
-		.text("Slide to adjust relevance metric:");
-	    var yy = d3.select("#lambdaZero")
-		.append("text")
-		.attr("x", 125)
-		.attr("y", -5)
-		.style("font-size", "10px")
-		.style("position", "absolute")
-		.text("(2)");
+  //   	    var lambdaZero = document.createElement("div");
+  //   	    lambdaZero.setAttribute("style", "padding: 5px; height: 20px; width: 220px; font-family: sans-serif; float: left");
+	 //    lambdaZero.setAttribute("id", "lambdaZero");
+  //   	    lambdaDiv.appendChild(lambdaZero);
+	 //    var xx = d3.select("#lambdaZero")
+		// .append("text")
+		// .attr("x", 0)
+		// .attr("y", 0)
+		// .style("font-size", "14px")
+		// .text("Slide to adjust relevance metric:");
+	 //    var yy = d3.select("#lambdaZero")
+		// .append("text")
+		// .attr("x", 125)
+		// .attr("y", -5)
+		// .style("font-size", "10px")
+		// .style("position", "absolute")
+		// .text("(2)");
 	    
-    	    var sliderDiv = document.createElement("div");
-    	    sliderDiv.setAttribute("id", "sliderdiv");
-    	    sliderDiv.setAttribute("style", "padding: 5px; height: 40px; width: 250px; float: right; margin-top: -5px; margin-right: 10px");
-    	    lambdaDiv.appendChild(sliderDiv);
+  //   	    var sliderDiv = document.createElement("div");
+  //   	    sliderDiv.setAttribute("id", "sliderdiv");
+  //   	    sliderDiv.setAttribute("style", "padding: 5px; height: 40px; width: 250px; float: right; margin-top: -5px; margin-right: 10px");
+  //   	    lambdaDiv.appendChild(sliderDiv);
 
-            var lambdaInput = document.createElement("input");
-            lambdaInput.setAttribute("style", "width: 250px; margin-left: 0px; margin-right: 0px");
-            lambdaInput.type = "range";
-            lambdaInput.min = 0;
-            lambdaInput.max = 1;
-            lambdaInput.step = data['lambda.step'];
-            lambdaInput.value = vis_state.lambda;
-            lambdaInput.id = lambdaID;
-	    lambdaInput.setAttribute("list", "ticks"); // to enable automatic ticks (with no labels, see below)
-            sliderDiv.appendChild(lambdaInput);
+  //           var lambdaInput = document.createElement("input");
+  //           lambdaInput.setAttribute("style", "width: 250px; margin-left: 0px; margin-right: 0px");
+  //           lambdaInput.type = "range";
+  //           lambdaInput.min = 0;
+  //           lambdaInput.max = 1;
+  //           lambdaInput.step = data['lambda.step'];
+  //           lambdaInput.value = vis_state.lambda;
+  //           lambdaInput.id = lambdaID;
+	 //    lambdaInput.setAttribute("list", "ticks"); // to enable automatic ticks (with no labels, see below)
+  //           sliderDiv.appendChild(lambdaInput);
 
-            var lambdaLabel = document.createElement("label");
-	    lambdaLabel.setAttribute("id", "lamlabel");
-            lambdaLabel.setAttribute("for", lambdaID);
-	    lambdaLabel.setAttribute("style", "height: 20px; width: 60px; font-family: sans-serif; font-size: 14px; margin-left: 80px");
-	    lambdaLabel.innerHTML = "&#955 = <span id='" + lambdaID + "-value'>" + vis_state.lambda + "</span>";
-            lambdaDiv.appendChild(lambdaLabel);
+  //           var lambdaLabel = document.createElement("label");
+	 //    lambdaLabel.setAttribute("id", "lamlabel");
+  //           lambdaLabel.setAttribute("for", lambdaID);
+	 //    lambdaLabel.setAttribute("style", "height: 20px; width: 60px; font-family: sans-serif; font-size: 14px; margin-left: 80px");
+	 //    lambdaLabel.innerHTML = "&#955 = <span id='" + lambdaID + "-value'>" + vis_state.lambda + "</span>";
+  //           lambdaDiv.appendChild(lambdaLabel);
 
-	    // Create the svg to contain the slider scale:
-	    var scaleContainer = d3.select("#sliderdiv").append("svg")
-		.attr("width", 250)
-		.attr("height", 25);
+	 //    // Create the svg to contain the slider scale:
+	 //    var scaleContainer = d3.select("#sliderdiv").append("svg")
+		// .attr("width", 250)
+		// .attr("height", 25);
 
-            var sliderScale = d3.scale.linear()
-		.domain([0, 1])
-		.range([7.5, 242.5])  // trimmed by 7.5px on each side to match the input type=range slider:
-		.nice();
+  //           var sliderScale = d3.scale.linear()
+		// .domain([0, 1])
+		// .range([7.5, 242.5])  // trimmed by 7.5px on each side to match the input type=range slider:
+		// .nice();
 
-            // adapted from http://bl.ocks.org/mbostock/1166403
-            var sliderAxis = d3.svg.axis()
-		.scale(sliderScale)
-		.orient("bottom")
-		.tickSize(10)
-		.tickSubdivide(true)
-		.ticks(6);
+  //           // adapted from http://bl.ocks.org/mbostock/1166403
+  //           var sliderAxis = d3.svg.axis()
+		// .scale(sliderScale)
+		// .orient("bottom")
+		// .tickSize(10)
+		// .tickSubdivide(true)
+		// .ticks(6);
 
-	    // group to contain the elements of the slider axis:
-	    var sliderAxisGroup = scaleContainer.append("g")
-		.attr("class", "slideraxis")
-		.attr("margin-top", "-10px")
-		.call(sliderAxis);
+	 //    // group to contain the elements of the slider axis:
+	 //    var sliderAxisGroup = scaleContainer.append("g")
+		// .attr("class", "slideraxis")
+		// .attr("margin-top", "-10px")
+		// .call(sliderAxis);
             
-	    // Another strategy for tick marks on the slider; simpler, but not labels
-	    // var sliderTicks = document.createElement("datalist");
-	    // sliderTicks.setAttribute("id", "ticks");
-	    // for (var tick = 0; tick <= 10; tick++) {
-	    // 	var tickOption = document.createElement("option");
-	    // 	//tickOption.value = tick/10;
-	    // 	tickOption.innerHTML = tick/10;
-	    // 	sliderTicks.appendChild(tickOption);
-	    // }
-            // append the forms to the containers
-	    //lambdaDiv.appendChild(sliderTicks);
+	 //    // Another strategy for tick marks on the slider; simpler, but not labels
+	 //    // var sliderTicks = document.createElement("datalist");
+	 //    // sliderTicks.setAttribute("id", "ticks");
+	 //    // for (var tick = 0; tick <= 10; tick++) {
+	 //    // 	var tickOption = document.createElement("option");
+	 //    // 	//tickOption.value = tick/10;
+	 //    // 	tickOption.innerHTML = tick/10;
+	 //    // 	sliderTicks.appendChild(tickOption);
+	 //    // }
+  //           // append the forms to the containers
+	 //    //lambdaDiv.appendChild(sliderTicks);
 
         }
 
@@ -995,6 +997,7 @@ LDAvis = function(to_select, json_file) {
 		.attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
 		.style("text-anchor", "middle")
 		.style("font-size", "20px")
+		.style("font-weight", "bold")
 		.text("Most Distinctive & Frequent Terms in Theme " + topics);
 	    
             // grab the bar-chart data for this topic only:

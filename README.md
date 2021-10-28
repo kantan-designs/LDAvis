@@ -3,14 +3,13 @@
 1. Get familiar with D3: https://towardsdatascience.com/d3-and-r-a-match-made-in-heaven-ff0bf82efe9a - DONE
 2. Fix width of vis display - DONE
 
+3. Display verbatims under vis in a dashboard - use flexdashboard: https://pkgs.rstudio.com/flexdashboard/
 
+4. Add download functionality to get per-topic CSV
 
-3. Fix sort issue with default bar chart display.
+4. Create report boilerplate for each question
 
-4. Display top 10 verbatims per topic below
-
-5. Create report boilerplate for each question
-
+5. Fix sort issue with default bar chart display.
 
 
 ## LDAvis
