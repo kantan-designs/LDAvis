@@ -148,7 +148,7 @@ LDAvis = function(to_select, json_file) {
         // http://bl.ocks.org/d3noob/10632804
         // http://bl.ocks.org/d3noob/10633704
         
-        init_forms(topicID, lambdaID, visID);
+        // init_forms(topicID, lambdaID, visID);
 
         // When the value of lambda changes, update the visualization
         d3.select(lambda_select)
@@ -388,14 +388,16 @@ LDAvis = function(to_select, json_file) {
                 if (vis_state.topic != d.topics) topic_off(this);
                 if (vis_state.topic > 0) topic_on(document.getElementById(topicID + vis_state.topic));
             });
+            
+// Comment out titles until later
 
-        svg.append("text")
-            .text("Potential Themes (Hover Over Bubbles To See Key Terms)")
-            .attr("x", mdswidth/2 + margin.left)
-            .attr("y", 30)
-	    .style("font-size", "20px")
-	    .style("font-weight", "bold")
-	    .style("text-anchor", "middle");
+    //    svg.append("text")
+    //      .text("Potential Themes (Hover Over Bubbles To See Key Terms)")
+    //      .attr("x", mdswidth/2 + margin.left)
+    //      .attr("y", 30)
+	  //      .style("font-size", "20px")
+	   //     .style("font-weight", "bold")
+	  //      .style("text-anchor", "middle");
 
         // establish layout and vars for bar chart
         var barDefault2 = lamData.filter(function(d) {
@@ -527,14 +529,16 @@ LDAvis = function(to_select, json_file) {
                 state_save(true);
             });
 
-        var title = chart.append("text")
-            .attr("x", barwidth/2)
-            .attr("y", -90)
-            .attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
-            .style("text-anchor", "middle")
-            .style("font-size", "20px")
-            .style("font-weight", "bold")
-            .text("Most Distinctive & Frequent Terms The Entire Sample");
+// Comment out titles until later
+
+  //      var title = chart.append("text")
+  //          .attr("x", barwidth/2)
+  //          .attr("y", -90)
+  //          .attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
+  //          .style("text-anchor", "middle")
+  //          .style("font-size", "20px")
+  //          .style("font-weight", "bold")
+  //          .text("Most Distinctive & Frequent Terms The Entire Sample");
 	
 //        title.append("tspan")
 //	    .attr("baseline-shift", "super")	    
@@ -995,10 +999,10 @@ LDAvis = function(to_select, json_file) {
 		.attr("x", barwidth/2)
 		.attr("y", -90)
 		.attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
-		.style("text-anchor", "middle")
-		.style("font-size", "20px")
-		.style("font-weight", "bold")
-		.text("Most Distinctive & Frequent Terms in Theme " + topics);
+	//	.style("text-anchor", "middle")
+	//	.style("font-size", "20px")
+	//	.style("font-weight", "bold")
+	//	.text("Most Distinctive & Frequent Terms in Theme " + topics);
 	    
             // grab the bar-chart data for this topic only:
             var dat2 = lamData.filter(function(d) {
@@ -1100,8 +1104,8 @@ LDAvis = function(to_select, json_file) {
             circle.style.fill = color1;
 
             var title = d3.selectAll(".bubble-tool")
-		.text("Most Distinctive & Frequent Terms In The Entire Sample")
-		  .attr("font-size", 20);
+//		.text("Most Distinctive & Frequent Terms In The Entire Sample")
+//		  .attr("font-size", 20);
 //	    title.append("tspan")
 //	     	.attr("baseline-shift", "super")	    
 //	     	.attr("font-size", 12)

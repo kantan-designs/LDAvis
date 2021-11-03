@@ -12,8 +12,8 @@
 #' #' @param topic.proportion a numeric vector of length K containing the proportion
 #' #'  of each topic in the corpus.
 #' #' @export
-#' 
-#' runShiny <- function(phi, term.frequency, vocab, topic.proportion) {
-#'   message("`runShiny` is deprecated as of version 0.2, please use `createJSON`")
-#'   return(NULL)
-#' }
+
+runShiny <- function(phi, term.frequency, vocab, topic.proportion) {
+  message("`runShiny` is deprecated as of version 0.2, please use `createJSON`")
+  return(NULL)
+}
