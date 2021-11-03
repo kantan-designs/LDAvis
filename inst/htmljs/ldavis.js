@@ -36,23 +36,24 @@ LDAvis = function(to_select, json_file) {
 
     // Set the duration of each half of the transition:
     var duration = 750;
-
+  
+    var scale_down = 0.75;
     // Set global margins used for everything
     var margin = {
         top: 30,
-        right: 60,
-        bottom: 70,
-        left: 60
+        right: 60 * scale_down,
+        bottom: 70 * scale_down,
+        left: 60 * scale_down
     },
-    mdswidth = 530,
-    mdsheight = 530,
-    barwidth = 530,
-    barheight = 530,
-    termwidth = 290, // width to add between two panels to display terms
+    mdswidth = 530 * scale_down,
+    mdsheight = 530 * scale_down,
+    barwidth = 530 * scale_down,
+    barheight = 530 * scale_down,
+    termwidth = 290 * scale_down, // width to add between two panels to display terms
     mdsarea = mdsheight * mdswidth;
     // controls how big the maximum circle can be
     // doesn't depend on data, only on mds width and height:
-    var rMax = 40;  
+    var rMax = 40 * scale_down;  
 
     // proportion of area of MDS plot to which the sum of default topic circle areas is set
     var circle_prop = 0.25;
@@ -148,7 +149,7 @@ LDAvis = function(to_select, json_file) {
         // http://bl.ocks.org/d3noob/10632804
         // http://bl.ocks.org/d3noob/10633704
         
-        // init_forms(topicID, lambdaID, visID);
+      //  init_forms(topicID, lambdaID, visID);
 
         // When the value of lambda changes, update the visualization
         d3.select(lambda_select)
@@ -379,7 +380,7 @@ LDAvis = function(to_select, json_file) {
                     topic_off(document.getElementById(old_topic));
                 }
                 // make sure topic input box value and fragment reflects clicked selection
-               // document.getElementById(topicID).value = vis_state.topic = d.topics;
+                document.getElementById(topicID).value = vis_state.topic = d.topics;
                 state_save(true);
                 topic_on(this);
                 topic_click(this, d.topics);
@@ -388,16 +389,13 @@ LDAvis = function(to_select, json_file) {
                 if (vis_state.topic != d.topics) topic_off(this);
                 if (vis_state.topic > 0) topic_on(document.getElementById(topicID + vis_state.topic));
             });
-            
-// Comment out titles until later
 
-    //    svg.append("text")
-    //      .text("Potential Themes (Hover Over Bubbles To See Key Terms)")
-    //      .attr("x", mdswidth/2 + margin.left)
-    //      .attr("y", 30)
-	  //      .style("font-size", "20px")
-	   //     .style("font-weight", "bold")
-	  //      .style("text-anchor", "middle");
+      svg.append("text")
+        .text("Potential Messaging Themes In This Sample")
+        .attr("x", mdswidth/2 + margin.left)
+        .attr("y", 30)
+	      .style("font-size", "14px")
+	      .style("text-anchor", "middle");
 
         // establish layout and vars for bar chart
         var barDefault2 = lamData.filter(function(d) {
@@ -436,7 +434,7 @@ LDAvis = function(to_select, json_file) {
             .attr("x", barguide.width + 5)
             .attr("y", mdsheight + 10 + barguide.height/2)
             .style("dominant-baseline", "middle")
-            .text("Overall term frequency");
+            .text("Frequency of term within the whole sample");
 
         d3.select("#bar-freqs").append("rect")
             .attr("x", 0)
@@ -449,7 +447,7 @@ LDAvis = function(to_select, json_file) {
             .attr("x", barguide.width/2 + 5)
             .attr("y", mdsheight + 10 + (3/2)*barguide.height + 5)
             .style("dominant-baseline", "middle")
-            .text("Estimated term frequency within the selected topic");
+            .text("Estimated frequency of term within selected theme");
 
 	// footnotes:
         // d3.select("#bar-freqs")
@@ -497,7 +495,7 @@ LDAvis = function(to_select, json_file) {
             .attr("x", -5)
             .attr("class", "terms")
             .attr("y", function(d) {
-                return y(d.Term) + 12;
+                return y(d.Term) + 8;
             })
             .attr("cursor", "pointer")
             .attr("id", function(d) {
@@ -531,14 +529,13 @@ LDAvis = function(to_select, json_file) {
 
 // Comment out titles until later
 
-  //      var title = chart.append("text")
-  //          .attr("x", barwidth/2)
-  //          .attr("y", -90)
-  //          .attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
-  //          .style("text-anchor", "middle")
-  //          .style("font-size", "20px")
-  //          .style("font-weight", "bold")
-  //          .text("Most Distinctive & Frequent Terms The Entire Sample");
+        var title = chart.append("text")
+            .attr("x", barwidth/2)
+            .attr("y", -90)
+            .attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
+            .style("text-anchor", "middle")
+            .style("font-size", "14px")
+            .text("Most Distinctive & Frequent Terms The Entire Sample");
 	
 //        title.append("tspan")
 //	    .attr("baseline-shift", "super")	    
@@ -558,21 +555,21 @@ LDAvis = function(to_select, json_file) {
 	// dynamically create the topic and lambda input forms at the top of the page:
         function init_forms(topicID, lambdaID, visID) {
 
-            // create container div for topic and lambda input:
+      // create container div for topic and lambda input:
 	    var inputDiv = document.createElement("div");
 	    inputDiv.setAttribute("id", "top");
-	    inputDiv.setAttribute("style", "width: 1210px"); // to match the width of the main svg element
+	    // inputDiv.setAttribute("style", "width: 1210px"); // to match the width of the main svg element
 	    document.getElementById(visID).appendChild(inputDiv);
 
 	    // topic input container:
 	    var topicDiv = document.createElement("div");
-	    topicDiv.setAttribute("style", "padding: 5px; background-color: #e8e8e8; display: inline-block; width: " + mdswidth + "px; height: 50px; float: left");
+	    topicDiv.setAttribute("style", "padding: 5px; display: inline-block; width: " + mdswidth + "px; height: 50px; float: left");
 	    inputDiv.appendChild(topicDiv);
 
             var topicLabel = document.createElement("label");
             topicLabel.setAttribute("for", topicID);
             topicLabel.setAttribute("style", "font-family: sans-serif; font-size: 14px");
-            topicLabel.innerHTML = "Selected Topic: <span id='" + topicID + "-value'></span>";
+            topicLabel.innerHTML = "Selected Theme: <span id='" + topicID + "-value'></span>";
             topicDiv.appendChild(topicLabel);
 
             var topicInput = document.createElement("input");
@@ -588,19 +585,19 @@ LDAvis = function(to_select, json_file) {
  	    var previous = document.createElement("button");
 	    previous.setAttribute("id", topicDown);
 	    previous.setAttribute("style", "margin-left: 5px");
-	    previous.innerHTML = "Previous Topic";
+	    previous.innerHTML = "Previous Theme";
             topicDiv.appendChild(previous);
 
 	    var next = document.createElement("button");
 	    next.setAttribute("id", topicUp);
 	    next.setAttribute("style", "margin-left: 5px");
-	    next.innerHTML = "Next Topic";
+	    next.innerHTML = "Next Theme";
             topicDiv.appendChild(next);
             
 	    var clear = document.createElement("button");
 	    clear.setAttribute("id", topicClear);
 	    clear.setAttribute("style", "margin-left: 5px");
-	    clear.innerHTML = "Clear Topic";
+	    clear.innerHTML = "Clear Theme";
             topicDiv.appendChild(clear);
 
             // lambda inputs
@@ -999,10 +996,9 @@ LDAvis = function(to_select, json_file) {
 		.attr("x", barwidth/2)
 		.attr("y", -90)
 		.attr("class", "bubble-tool") //  set class so we can remove it when highlight_off is called  
-	//	.style("text-anchor", "middle")
-	//	.style("font-size", "20px")
-	//	.style("font-weight", "bold")
-	//	.text("Most Distinctive & Frequent Terms in Theme " + topics);
+		.style("text-anchor", "middle")
+		.style("font-size", "14px")
+		.text("Most Distinctive & Frequent Terms in Theme " + topics);
 	    
             // grab the bar-chart data for this topic only:
             var dat2 = lamData.filter(function(d) {
@@ -1104,8 +1100,8 @@ LDAvis = function(to_select, json_file) {
             circle.style.fill = color1;
 
             var title = d3.selectAll(".bubble-tool")
-//		.text("Most Distinctive & Frequent Terms In The Entire Sample")
-//		  .attr("font-size", 20);
+		.text("Most Distinctive & Frequent Terms In The Entire Sample")
+		  .attr("font-size", 14);
 //	    title.append("tspan")
 //	     	.attr("baseline-shift", "super")	    
 //	     	.attr("font-size", 12)
@@ -1427,10 +1423,10 @@ LDAvis = function(to_select, json_file) {
         }
 
     });
-    // var current_clicked = {
-    //     what: "nothing",
-    //     element: undefined
-    // },
+  //  var current_clicked = {
+  //      what: "nothing",
+  //      element: undefined
+  //   },
 
     //debugger;
 

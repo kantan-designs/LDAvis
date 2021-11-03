@@ -3,11 +3,18 @@
 1. Get familiar with D3: https://towardsdatascience.com/d3-and-r-a-match-made-in-heaven-ff0bf82efe9a - DONE
 2. Fix width of vis display - DONE
 3. Display static verbatims under vis in a dashboard w/ flexdashboard: https://pkgs.rstudio.com/flexdashboard/ - DONE
+4. Fix svg dimensions to fit flexboard layout pane - DONE
 
-4. Make SVG responsive https://stackoverflow.com/questions/16265123/resize-svg-when-window-is-resized-in-d3-js
+5. Create report boilerplate for each question
 
-5. Add download functionality to get per-topic CSV
-6. Create report boilerplate for each question
+
+
+
+
+
+5. Make SVG responsive https://stackoverflow.com/questions/16265123/resize-svg-when-window-is-resized-in-d3-js
+
+
 
 
 
